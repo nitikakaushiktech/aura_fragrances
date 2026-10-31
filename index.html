@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura | Fragrance Finder & Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. Header & Navigation -->
+  <header>
+    <div class="logo">✨ AURA Fragrances</div>
+    <nav>
+      <a href="#quiz-section">Take Quiz</a>
+      <a href="#shop-section">Explore Shop</a>
+    </nav>
+  </header>
+
+  <!-- 2. Hero Banner -->
+  <section class="hero">
+    <h1>Find Your Signature Scent</h1>
+    <p>Take our 2-minute fragrance quiz to discover perfumes matched to your personality and style.</p>
+    <a href="#quiz-section" class="btn">Start Scent Quiz</a>
+  </section>
+
+  <!-- 3. Quiz Section -->
+  <section id="quiz-section" class="quiz-container">
+    <h2>Perfume Recommendation Quiz</h2>
+    
+    <div id="quiz-box">
+      <!-- Question 1 -->
+      <div class="question-step" id="step-1">
+        <h3>1. Which scent family do you prefer?</h3>
+        <button class="option-btn" onclick="selectOption('family', 'Floral')">🌸 Floral (Roses, Jasmine)</button>
+        <button class="option-btn" onclick="selectOption('family', 'Woody')">🌲 Woody (Sandalwood, Cedar)</button>
+        <button class="option-btn" onclick="selectOption('family', 'Fresh')">🍋 Fresh (Citrus, Ocean)</button>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-step hidden" id="step-2">
+        <h3>2. Where do you plan to wear this perfume?</h3>
+        <button class="option-btn" onclick="selectOption('occasion', 'Daily')">💼 Work / Daily Wear</button>
+        <button class="option-btn" onclick="selectOption('occasion', 'Party')">🎉 Evening / Parties</button>
+        <button class="option-btn" onclick="selectOption('occasion', 'Casual')">☕ Casual Outings</button>
+      </div>
+
+      <!-- Results Area -->
+      <div id="quiz-results" class="hidden">
+        <h3>✨ Your Perfect Matches</h3>
+        <div id="recommendations-grid" class="product-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Full Shop Section -->
+  <section id="shop-section" class="shop-container">
+    <h2>All Perfumes</h2>
+    <div id="full-catalog" class="product-grid"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
