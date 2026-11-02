@@ -27,25 +27,25 @@ function renderProduct() {
 
     <section class="product-hero">
       <div class="product-media">
-        <img src="${p.image}" alt="${p.name} by ${p.brand}">
+        <img src="${p.image}" alt="${p.name} by ${p.brand}" onerror="${imgOnError(p)}">
       </div>
 
       <div class="product-detail">
         <span class="family-chip">${t.emoji} ${p.family} • ${t.tagline}</span>
         <h1>${p.name}</h1>
         <p class="brand">by ${p.brand}</p>
-        <div class="detail-price">$${p.price}</div>
+        <div class="detail-price" id="detail-price" aria-live="polite">${formatPrice(priceForSize(p, DEFAULT_SIZE))}</div>
         <p class="detail-desc">${p.description}</p>
 
         <dl class="spec-list">
           <div><dt>Strength</dt><dd>${INTENSITY_LABEL[p.intensity]}</dd></div>
           <div><dt>Best for</dt><dd>${OCCASION_LABEL[p.occasion]}</dd></div>
           <div><dt>Season</dt><dd>${SEASON_LABEL[p.season]}</dd></div>
-          <div><dt>Price range</dt><dd>${{Budget:"Under $100", Mid:"$100 – $150", Luxury:"Above $150"}[p.budget]}</dd></div>
+          <div><dt>Price range</dt><dd>${PRICE_RANGE_LABEL[p.budget]}</dd></div>
         </dl>
 
         <div class="size-row" role="radiogroup" aria-label="Bottle size">
-          ${["30 ml", "50 ml", "100 ml"].map((s, i) => `<button class="size-btn ${i === 1 ? "selected" : ""}" role="radio" aria-checked="${i === 1}">${s}</button>`).join("")}
+          ${SIZES.map(s => { const on = s.label === DEFAULT_SIZE; return `<button class="size-btn ${on ? "selected" : ""}" role="radio" aria-checked="${on}" data-size="${s.label}">${s.label}<small>${formatPrice(priceForSize(p, s.label))}</small></button>`; }).join("")}
         </div>
 
         <div class="buy-row">
@@ -73,16 +73,18 @@ function renderProduct() {
   root.querySelectorAll(".size-btn").forEach(btn => btn.addEventListener("click", () => {
     root.querySelectorAll(".size-btn").forEach(b => { b.classList.remove("selected"); b.setAttribute("aria-checked", "false"); });
     btn.classList.add("selected"); btn.setAttribute("aria-checked", "true");
+
+    // Update the displayed price for the chosen size
+    const priceEl = document.getElementById("detail-price");
+    priceEl.textContent = formatPrice(priceForSize(p, btn.dataset.size));
+    priceEl.classList.remove("price-pop"); void priceEl.offsetWidth; priceEl.classList.add("price-pop");
   }));
 
-  // Add to cart (demo: shows a confirmation only)
+  // Add to cart: saved to localStorage, header counter updates instantly
   document.getElementById("add-cart").addEventListener("click", () => {
-    const size = root.querySelector(".size-btn.selected").textContent;
-    const toast = document.getElementById("toast");
-    toast.textContent = `Added ${p.name} (${size}) to cart`;
-    toast.classList.remove("hidden");
-    clearTimeout(toast._t);
-    toast._t = setTimeout(() => toast.classList.add("hidden"), 2500);
+    const size = root.querySelector(".size-btn.selected").dataset.size;
+    Cart.add(p.id, size);   // cart stores the size and its adjusted price
+    showToast(`Added ${p.name} (${size}) – ${formatPrice(priceForSize(p, size))}`);
   });
 }
 

@@ -71,26 +71,57 @@ function selectOption(category, value) {
   }
 }
 
+// Weighted scoring (total 100). Budget is a HARD filter, so it never shows
+// perfumes outside the chosen range; family and budget carry the most weight.
+const SCORE_WEIGHTS = { family: 40, budget: 30, occasion: 12, intensity: 9, season: 9 };
+const INTENSITY_RANK = { Subtle: 0, Moderate: 1, Bold: 2 };
+const MAX_RESULTS = 6;
+
+function scorePerfume(p, a) {
+  const w = SCORE_WEIGHTS;
+  let score = 0;
+  if (p.family === a.family) score += w.family;
+  if (p.budget === a.budget) score += w.budget;
+  if (p.occasion === a.occasion) score += w.occasion;
+
+  // Intensity: full points if equal, half if one step away
+  const gap = Math.abs(INTENSITY_RANK[p.intensity] - INTENSITY_RANK[a.intensity]);
+  score += gap === 0 ? w.intensity : gap === 1 ? w.intensity / 2 : 0;
+
+  // Season: full for same season, partial if either is all-season
+  if (p.season === a.season) score += w.season;
+  else if (p.season === "All" || a.season === "All") score += w.season * 0.6;
+
+  return Math.round(score);
+}
+
 function showRecommendations() {
   const grid = document.getElementById("recommendations-grid");
   const note = msg => `<p class="grid-note">${msg}</p>`;
   const a = userAnswers;
 
-  let matched = perfumes.filter(p => p.family === a.family && p.budget === a.budget && p.occasion === a.occasion);
+  // 1. Strict budget filter: nothing outside the chosen range is ever shown
+  const inBudget = perfumes
+    .filter(p => p.budget === a.budget)
+    .map(p => ({ p, score: scorePerfume(p, a) }));
+
+  // 2. Rank: score first, then bestsellers, then lower price
+  const rank = (x, y) => y.score - x.score || (y.p.bestseller - x.p.bestseller) || (x.p.price - y.p.price);
+
+  // 3. Prefer the chosen scent family; only fall back to other families if none exist in budget
+  let results = inBudget.filter(r => r.p.family === a.family).sort(rank);
   let intro = "";
 
-  if (!matched.length) {
-    matched = perfumes.filter(p => p.family === a.family && p.budget === a.budget);
-    intro = note("We couldn't find an exact match for that occasion, but here are top matches in your preferred scent family and budget:");
-  }
-  if (!matched.length) {
-    matched = perfumes.filter(p => p.family === a.family);
-    intro = note("Here are alternative selections within your preferred scent family:");
+  if (!results.length && inBudget.length) {
+    results = inBudget.sort(rank);
+    intro = note(`We don't have ${a.family.toLowerCase()} scents in the ${PRICE_RANGE_LABEL[a.budget]} range yet. Here are the closest picks within your budget:`);
   }
 
-  grid.innerHTML = matched.length
-    ? intro + matched.map(cardHTML).join("")
-    : `<div class="empty-state"><h4>No exact matches found for this combination 🌸</h4>
+  results = results.slice(0, MAX_RESULTS);
+
+  grid.innerHTML = results.length
+    ? intro + results.map(r => cardHTML(r.p)).join("")
+    : `<div class="empty-state"><h4>No perfumes found in this budget 🌸</h4>
        <p>Explore the full catalog by scent profile, or retake the quiz.</p>
        <a href="index.html?view=all#shop-section" class="btn">Browse Catalog</a></div>`;
 }
