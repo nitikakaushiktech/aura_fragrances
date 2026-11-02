@@ -8,28 +8,33 @@
 </head>
 <body>
 
-  <!-- 1. Header & Navigation -->
-  <header>
-    <div class="logo">✨ AURA Fragrances</div>
-    <nav>
-      <a href="#quiz-section">Take Quiz</a>
-      <a href="#shop-section">Explore Shop</a>
-    </nav>
-  </header>
+  <!-- Sticky header (menu + search) is rendered by common.js -->
+  <div id="site-header"></div>
 
-  <!-- 2. Hero Banner -->
+  <!-- Hero -->
   <section class="hero">
     <h1>Find Your Signature Scent</h1>
+  </section>
+
+  <!-- Quiz -->
+  
+
+  <!-- Shop (changes with the header menu and search) -->
+  <section id="shop-section" class="shop-container">
+    <h2 id="shop-title">Perfume Collection Categorized by Profile</h2>
+    <div id="full-catalog"></div>
+  </section>
+
+  <section class="hero">
     <p>Take our 5-minute fragrance quiz to discover perfumes matched precisely to your style, occasion, and budget.</p>
     <a href="#quiz-section" class="btn">Start Scent Quiz</a>
   </section>
 
-  <!-- 3. Quiz Section (5 Questions) -->
+
   <section id="quiz-section" class="quiz-container">
     <h2>Perfume Recommendation Quiz</h2>
-    
+
     <div id="quiz-box">
-      <!-- Question 1: Family -->
       <div class="question-step" id="step-1">
         <h3>Question 1/5: Which scent family do you prefer most?</h3>
         <button class="option-btn" onclick="selectOption('family', 'Floral')">🌸 Floral (Roses, Jasmine, Sweet)</button>
@@ -38,7 +43,6 @@
         <button class="option-btn" onclick="selectOption('family', 'Oriental')">🔥 Oriental (Spices, Amber, Warm)</button>
       </div>
 
-      <!-- Question 2: Occasion -->
       <div class="question-step hidden" id="step-2">
         <h3>Question 2/5: Where do you plan to wear this fragrance primarily?</h3>
         <button class="option-btn" onclick="selectOption('occasion', 'Daily')">💼 Office / Daily Wear</button>
@@ -46,7 +50,6 @@
         <button class="option-btn" onclick="selectOption('occasion', 'Casual')">☕ Casual Weekend Outings</button>
       </div>
 
-      <!-- Question 3: Intensity -->
       <div class="question-step hidden" id="step-3">
         <h3>Question 3/5: What kind of strength or projection do you like?</h3>
         <button class="option-btn" onclick="selectOption('intensity', 'Subtle')">🍃 Light & Subtle</button>
@@ -54,7 +57,6 @@
         <button class="option-btn" onclick="selectOption('intensity', 'Bold')">💥 Bold & Long-lasting</button>
       </div>
 
-      <!-- Question 4: Season -->
       <div class="question-step hidden" id="step-4">
         <h3>Question 4/5: Which season or weather fits your mood?</h3>
         <button class="option-btn" onclick="selectOption('season', 'Summer')">☀️ Summer / Bright Weather</button>
@@ -62,7 +64,6 @@
         <button class="option-btn" onclick="selectOption('season', 'All')">🌍 All-Season Versatile</button>
       </div>
 
-      <!-- Question 5: Budget -->
       <div class="question-step hidden" id="step-5">
         <h3>Question 5/5: What is your preferred budget range?</h3>
         <button class="option-btn" onclick="selectOption('budget', 'Budget')">💵 Under $100 (Affordable luxury)</button>
@@ -70,7 +71,6 @@
         <button class="option-btn" onclick="selectOption('budget', 'Luxury')">👑 Above $150 (Premium niche)</button>
       </div>
 
-      <!-- Results Area -->
       <div id="quiz-results" class="hidden">
         <h3>✨ Your Perfect Custom Matches</h3>
         <div id="recommendations-grid" class="product-grid"></div>
@@ -79,12 +79,10 @@
     </div>
   </section>
 
-  <!-- 4. Full Shop Section -->
-  <section id="shop-section" class="shop-container">
-    <h2>All Perfumes Collection</h2>
-    <div id="full-catalog" class="product-grid"></div>
-  </section>
+  <div id="site-footer"></div>
 
+  <script src="data.js"></script>
+  <script src="common.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
