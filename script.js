@@ -121,7 +121,7 @@ function showRecommendations() {
 
   grid.innerHTML = results.length
     ? intro + results.map(r => cardHTML(r.p)).join("")
-    : `<div class="empty-state"><h4>No perfumes found in this budget 🌸</h4>
+    : `<div class="empty-state"><h4>No perfumes found in this budget </h4>
        <p>Explore the full catalog by scent profile, or retake the quiz.</p>
        <a href="index.html?view=all#shop-section" class="btn">Browse Catalog</a></div>`;
 }

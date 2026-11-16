@@ -36,7 +36,7 @@ const perfumes = [
     intensity: "Subtle",
     season: "Summer",
     budget: "Budget",
-    image: U("photo-1610461888750-10bfc601b94f") // Correct: blue aqua tones
+    image: "https://www.naseemperfume.in/cdn/shop/files/AQUA.png?v=1753541808&width=1500" // Correct: blue aqua tones
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ const perfumes = [
     intensity: "Bold",
     season: "All",
     budget: "Luxury",
-    image: U("photo-1585386959984-a4155224a3a4") // Fixed: apothecary woodsy bottle style
+    image: "https://nicheessences.com/cdn/shop/files/santal-oud-by-niche-eau-de-parfum-inspired-by-tom-fords-oud-wood-notes-secondary_efcfcaa0-8a5a-4777-acbb-8f562e96a8b3.jpg?v=1787460657&width=2048" // Fixed: apothecary woodsy bottle style
   },
   {
     id: 8,
@@ -96,7 +96,7 @@ const perfumes = [
     intensity: "Subtle",
     season: "Winter",
     budget: "Mid",
-    image: U("photo-1541643600914-78b084683601") // Fixed: soft warm-toned aesthetic bottle
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPcTjgxPWQkxBUSEMjhzdn9e7BtkRHHTd6dJ-l4_ACmmYWAJHnT3jvp5x9&s=10" // Fixed: soft warm-toned aesthetic bottle
   },
   {
     id: 9,
@@ -108,7 +108,7 @@ const perfumes = [
     intensity: "Subtle",
     season: "Summer",
     budget: "Mid",
-    image: U("photo-1583445013765-46c20c4a6772") // Fixed: clean classic glass perfume bottle
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG-7IG2UIy3JqgYynrK_uFhi3yeB5KFW47OurNgyGa80m2-G3FSr02lHo&s=10' // Fixed: clean classic glass perfume bottle
   },
   {
     id: 10,
@@ -158,7 +158,7 @@ const perfumes = [
     intensity: "Moderate",
     season: "All",
     budget: "Mid",
-    image: U("photo-1608528577891-eb055944f2e7") // Fixed: earthy tone glass bottle
+    image: "https://swissarabian.com/cdn/shop/files/Untitleddesign_1_1.webp?v=1753922758" // Fixed: earthy tone glass bottle
   },
   {
     id: 14,
@@ -194,7 +194,7 @@ const perfumes = [
     intensity: "Subtle",
     season: "Summer",
     budget: "Mid",
-    image: U("photo-1594035910387-fea47794261f") // Fixed: elegant decorative floral presentation
+    image: "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/000000000493715720/TBZEsK9HI-000000000493715720_3.jpg" // Fixed: elegant decorative floral presentation
   },
   {
     id: 17,
@@ -206,7 +206,7 @@ const perfumes = [
     intensity: "Moderate",
     season: "Winter",
     budget: "Luxury",
-    image: U("photo-1596462502278-27bfdc403348") // Fixed: rich wooden/warm tone bottle vibe
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSxogb1h1wUnU8u2Ag7pjwpIh70mdytZ5LKaBTahMTgF9rtHHDhN8FOsay&s=10" // Fixed: rich wooden/warm tone bottle vibe
   },
   {
     id: 18,
@@ -218,7 +218,7 @@ const perfumes = [
     intensity: "Moderate",
     season: "Summer",
     budget: "Budget",
-    image: U("photo-1610461888750-10bfc601b94f") // Fixed: crisp light blue aesthetic bottle
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhblEBZaYzWOaowsMi3DdxkphA01J7krVED-2gq_OKJ9uiYtFKDNmTyJEb&s=10" // Fixed: crisp light blue aesthetic bottle
   },
   {
     id: 19,
@@ -242,7 +242,7 @@ const perfumes = [
     intensity: "Subtle",
     season: "All",
     budget: "Mid",
-    image: U("photo-1541643600914-78b084683601") // Fixed: soft minimalist classic bottle
+    image: "https://perfumistta.com.br/cdn/shop/files/30nova.png?v=1787671308&width=2048" // Fixed: soft minimalist classic bottle
   }
 ];
 
@@ -251,10 +251,10 @@ const perfumes = [
 // ==========================================
 
 const THEMES = {
-  Floral:   { accent: "#b8546b", soft: "#fbeff1", deep: "#5a2231", tagline: "Soft petals, romantic and bright.", emoji: "🌸" },
-  Woody:    { accent: "#8a5a3b", soft: "#f5ede4", deep: "#3b2615", tagline: "Grounded, warm and earthy.",        emoji: "🌲" },
-  Fresh:    { accent: "#2f8da3", soft: "#e8f5f8", deep: "#123c48", tagline: "Crisp, clean and energising.",      emoji: "🍋" },
-  Oriental: { accent: "#b0561f", soft: "#f9ece0", deep: "#4a230b", tagline: "Spiced, amber and unforgettable.",  emoji: "🔥" }
+  Floral:   { accent: "#b8546b", soft: "#fbeff1", deep: "#5a2231", tagline: "Soft petals, romantic and bright.", emoji: "" },
+  Woody:    { accent: "#8a5a3b", soft: "#f5ede4", deep: "#3b2615", tagline: "Grounded, warm and earthy.", emoji: "" },
+  Fresh:    { accent: "#2f8da3", soft: "#e8f5f8", deep: "#123c48", tagline: "Crisp, clean and energising.", emoji: "" },
+  Oriental: { accent: "#b0561f", soft: "#f9ece0", deep: "#4a230b", tagline: "Spiced, amber and unforgettable.", emoji: "" }
 };
 
 const FAMILY_NOTES = {
